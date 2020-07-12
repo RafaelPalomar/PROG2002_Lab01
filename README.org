@@ -1,0 +1,98 @@
+#+TITLE: Lab 01: creating a simple OpenGL application
+#+SUBTITLE: PROG2002 -- Graphics Programming -- Autumn 2020
+#+AUTHOR: Ahmed Mohammed, Christopher Frantz and Rafael Palomar
+
+* Introduction
+
+This lab will be the first contact with some of the libraries that will be used
+during the course. The objectives of the lab are:
+
+- Creating a simple OpenGL project
+- Display simple 2D patterns
+
+You are free to use any operating system, however the instructions of this lab
+are only available for Microsoft Windows and GNU/Linux systems (mostly
+debian-based). MS Windows users should download the 64-bit version of the
+binaries and, whenever possible, choose the development versions.
+
+* Pre-requisites
+
+- OpenGL >= 4.3 :: OpenGL is the industry&rsquo;s most widely used, supported
+  and best documented 2D/3D graphics API making it inexpensive and easy to obtain
+  information on implementing OpenGL in hardware and software. You should try to
+  get the latest graphics drivers available for your platform. On MS Windows,
+  the header files will be bundled with your compiler; on GNU/Linux
+  (debian-based systems) it is needed to install the =mesa-common-dev= package.
+
+- GLFW >= 3.3.1 :: GLFW is an Open Source, multi-platform library for OpenGL,
+  OpenGL ES and Vulkan development on the desktop. It provides a simple API for
+  creating windows, contexts and surfaces, receiving input and events. It can be
+  downloaded from https://www.glfw.org/ or using your package manager
+  =libglfw3, libglfw3-dev=. in Debian-based systems.
+
+- GLEW-2.1.0 :: The OpenGL Extension Wrangler Library (GLEW) is a cross-platform
+  open-source C/C++ extension loading library. GLEW provides efficient run-time
+  mechanisms for determining which OpenGL extensions are supported on the target
+  platform. OpenGL core and extension functionality is exposed in a single
+  header file. GLEW has been tested on a variety of operating systems, including
+  Windows, Linux, Mac OS X, FreeBSD, Irix, and Solaris. It can be downloaded
+  from http://glew.sourceforge.net/ or using your package manager
+  =libglew-dev=.
+
+
+* Instructions for Windows
+
+* Instructions for Linux
+
+This instructions should work on recent Debian-based systems, for other
+distributions try to find the appropriated name for the packages in your package
+manager.
+
+1. Install the libraries
+
+#+BEGIN_SRC bash
+apt install libglfw3 libglfw3-dev mesa-common-dev libglew-dev
+#+END_SRC
+
+2. Create and compie your application (=main.cpp=)
+
+#+BEGIN_SRC bash
+g++ main.cpp -o lab01 -lGL -lGLEW -lglfw
+#+END_SRC
+
+* Tasks
+
+** Task 0: Initial setup
+
+ - Install your development environment and the required libraries. If there is
+   no special reason to use 32-bits version, we recommend to use 64-bit versions
+   of the libraries.
+
+ - Update your graphics drivers.
+
+** Task 1: Create your first window and OpenGL context with GLFW
+
+- Create a simple =main.cpp= that creates a GLFW window.
+- Keep the window alive until the user presses the =escape= key.
+- Make sure to capture and inform the user about any possible error derived from
+  the initialization of GLFW or the creation of the window.
+- Make sure to properly terminate the application when the user closes the
+  application.
+- Make the OpenGL context current.
+
+** Task 2: Initialize GLEW and clear the screen
+
+- Use OpenGL basic functions to set the backround of the window to a color of
+  your choice.
+
+** Task 3: Create your first triangle and display it on the screen.
+
+- Initiailze GLEW and make sure to capture and inform the user about any
+  possible error.
+- Print the OpenGL version.
+- Create a triangle geometry based no the coordinates of its vertices.
+- Transfer triangle definition to OpenGL buffers and display the triangle.
+- Create a simple vertex shader that forwards the vertex coordinates as they
+  are.
+- Create a simple fragment shader that sets the triangle to a color of choice.
+- Try changing the position and color of the triangle using shaders.
