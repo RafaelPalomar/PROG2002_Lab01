@@ -42,6 +42,55 @@ binaries and, whenever possible, choose the development versions.
 
 * Instructions for Windows
 
+We will be using visual studio 2017/2019
+
+1. Download Important Libraries
+
+- GLFW 64/32 bit (depending on the platform you want to support) pre-built binaries: https://www.glfw.org/download.html
+- GLEW 64/32 bit (depending on the platform you want to support) pre-built binaries: http://glew.sourceforge.net/
+
+2. Create a new visual studio C++ project – Empty project
+
+- Use your preferred location (plocation) and project name (pname)
+- In your project folder( at plocation), create a new folder for your source files (src) and dependencies (Dependency): 
+    right click on the project solution name
+    choose Add -> New Folder
+- In your src folder, Add -> New Item -> C++ file
+
+3. Linking the libraries
+
+- Create GLFW and GLEW folders in the projects Dependencies folder 
+- Go to the downloaded GLFW/GLEW pre-built binary folders
+- Copy the include and lib folders (lib-vc2017 or 2019 for GLFW)
+- Paste them in their corresponding Dependencies folders.
+- Open your project property page: 
+- Right click on the project solution name -> properties
+- For all configurations and your chosen platform, add additional include directories 
+- go to C/C++ -> General setting -> Additional Include Directories
+- add the path to the GLFW and GLEW include files. 
+
+#+BEGIN_SRC bash
+$(SourceDir)Dependencies\GLFW\include;
+$(SourceDir)Dependencies\GLEW\include
+#+END_SRC
+    
+- go to C/C++ -> Preprocessors -> Preprocessor definitions and add GLEW_STATIC
+
+- For all configurations and your chosen platform, add linkers for your libraries
+- Go to Linkers -> General -> Additional Library Directories
+- Add the path to your libraries
+
+#+BEGIN_SRC bash
+$(SourceDir)Dependencies\GLFW\lib-vc2017 or 2019;
+$(SourceDir)Dependencies\GLEW\lib\Release\Win32 or x64
+#+END_SRC
+
+- Go to input -> include the libraries in the Additional Dependencies section.
+
+#+BEGIN_SRC bash
+glfw3.lib;opengl32.lib;glew32s.lib
+#+END_SRC
+
 * Instructions for Linux
 
 This instructions should work on recent Debian-based systems, for other
