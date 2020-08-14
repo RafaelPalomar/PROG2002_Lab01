@@ -1,6 +1,6 @@
 #+TITLE: Lab 01: creating a simple OpenGL application
 #+SUBTITLE: PROG2002 -- Graphics Programming -- Autumn 2020
-#+AUTHOR: Ahmed Mohammed, Christopher Frantz and Rafael Palomar
+#+AUTHOR: Ahmed Mohammed, Christopher Frantz, Rafael Palomar, and Mekides Assefa
 
 * Introduction
 
