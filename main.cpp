@@ -157,7 +157,6 @@ color = vec4(1);
         glfwPollEvents();
 
         glClear(GL_COLOR_BUFFER_BIT);
-        glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
 
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
