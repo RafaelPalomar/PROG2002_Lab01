@@ -146,6 +146,9 @@ color = vec4(1);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
 
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+
     glUseProgram(shaderProgram);
 
     // Main loop
@@ -163,6 +166,11 @@ color = vec4(1);
         // Exit the loop if escape is pressed
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) break;
     }
+
+    glDisableVertexAttribArray(0);
+    glDeleteBuffers(1, &vertexBufferId);
+    glDeleteVertexArrays(1, &vertexArrayId);
+
 
     glfwTerminate();
 
