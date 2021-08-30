@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <ios>
 #include <iostream>
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 // Error function for GLFW
@@ -59,16 +59,13 @@ int main(void)
     //Set the OpenGL context
     glfwMakeContextCurrent(window);
 
-    GLenum error = glewInit();
-    if (error != GLEW_OK)
-    {
-        std::cerr << "GLEW intialization failure:" << glewGetErrorString(error) << "\n";
-        std::cin.get();
 
-        glfwTerminate();
-
-        return EXIT_FAILURE;
-    }
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+      {
+      std::cout << "Failed to initialize GLAD" << std::endl;
+      glfwTerminate();
+      return EXIT_FAILURE;
+      }
 
     // Enable capture of debug output.
     glEnable(GL_DEBUG_OUTPUT);
