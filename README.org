@@ -1,19 +1,21 @@
 #+TITLE: Lab 01: creating a simple OpenGL application
 #+SUBTITLE: PROG2002 -- Graphics Programming -- Autumn 2020
-#+AUTHOR: Ahmed Mohammed, Christopher Frantz, Rafael Palomar, and Mekides Assefa
+#+AUTHOR: Rafael Palomar and Mekides Assefa
 
 * Introduction
 
 This lab will be the first contact with some of the libraries that will be used
-during the course. The objectives of the lab are:
+during the course. The objective of the lab **is only testing your hardware,
+libraries and development environment to make sure you are all set for the labs
+and assignments**. This project is a concise example of:
 
-- Creating a simple OpenGL project
-- Display simple 2D patterns
+- Creation of a simple OpenGL application using CMake, Git, GLFW and glad.
+- Display a white triangle in over a red background.
+- Printout drivers information, OpenGL version and profile.
 
 You are free to use any operating system, however the instructions of this lab
 are only available for Microsoft Windows and GNU/Linux systems (mostly
-debian-based). MS Windows users should download the 64-bit version of the
-binaries and, whenever possible, choose the development versions.
+debian-based).
 
 * Pre-requisites
 
@@ -24,127 +26,41 @@ binaries and, whenever possible, choose the development versions.
   the header files will be bundled with your compiler; on GNU/Linux
   (debian-based systems) it is needed to install the =mesa-common-dev= package.
 
-- GLFW >= 3.3.1 :: GLFW is an Open Source, multi-platform library for OpenGL,
-  OpenGL ES and Vulkan development on the desktop. It provides a simple API for
-  creating windows, contexts and surfaces, receiving input and events. It can be
-  downloaded from https://www.glfw.org/ or using your package manager
-  =libglfw3, libglfw3-dev=. in Debian-based systems.
-
-- GLEW-2.1.0 :: The OpenGL Extension Wrangler Library (GLEW) is a cross-platform
-  open-source C/C++ extension loading library. GLEW provides efficient run-time
-  mechanisms for determining which OpenGL extensions are supported on the target
-  platform. OpenGL core and extension functionality is exposed in a single
-  header file. GLEW has been tested on a variety of operating systems, including
-  Windows, Linux, Mac OS X, FreeBSD, Irix, and Solaris. It can be downloaded
-  from http://glew.sourceforge.net/ or using your package manager
-  =libglew-dev=.
-
-
 * Instructions for Windows
 
-We will be using visual studio 2017/2019
+We will be using Visual Studio.
 
-1. Download Important Libraries
+1. Open Visual Studio. You should see different ways to import/open your
+   projects. Go for clone from repository.
 
-- GLFW 64/32 bit, depending on the platform you want to support. [prebuilt binaries](https://www.glfw.org/download.html)
-- GLEW 64/32 bit, depending on the platform you want to support. [prebuilt binaries](http://glew.sourceforge.net/)
+2. Introduce the url of the repository: =https://github.com/rafaelpalomar/prog2002_lab01=
 
-2. Create a new visual studio C++ project – Empty project
+3. You should be able to navigate to the project and see all files and folders.
+   Then you can select the target you want to build (=lab01.exe=) by clicking
+   the dropdown button next to the compile button (green play icon), that is
 
-- Use your preferred location (plocation) and project name (pname)
-- In your project folder( at plocation), create a new folder for your source files (src) and dependencies (Dependency): 
-    - right click on the project solution name
-    - choose Add -> New Folder
-- In your src folder, Add -> New Item -> C++ file
-    - write and save the provided main.cpp code.
+* Instructions for Linux (command-line)
 
-3. Linking the libraries
 
-- Create GLFW and GLEW folders in the projects Dependencies folder 
-- Go to the downloaded GLFW/GLEW pre-built binary folders
-- Copy the include and lib folders (lib-vc2017 or 2019 for GLFW)
-- Paste them in their corresponding Dependencies folders.
-- Open your project's property page: 
-- Right click on the project solution name -> properties
-- For all configurations and your chosen platform, add additional include directories 
-    - go to C/C++ -> General setting -> Additional Include Directories
-    - add the path to the GLFW and GLEW include files. 
-    
-#+BEGIN_SRC bash
-$(SourceDir)Dependencies\GLFW\include;
-$(SourceDir)Dependencies\GLEW\include
-#+END_SRC
-    
-    - go to C/C++ -> Preprocessors -> Preprocessor definitions and add GLEW_STATIC
-
-- For all configurations and your chosen platform, add linkers for your libraries
-    - Go to Linkers -> General -> Additional Library Directories
-    - Add the path to your libraries
+1. Install dependent libraries
 
 #+BEGIN_SRC bash
-$(SourceDir)Dependencies\GLFW\lib-vc2017 or 2019;
-$(SourceDir)Dependencies\GLEW\lib\Release\Win32 or x64
+apt install mesa-common-dev libxinerama-dev libxinput-dev libxi-dev
 #+END_SRC
 
-    - Go to input -> include the libraries in the Additional Dependencies section.
+2. Clone the repository
 
-#+BEGIN_SRC bash
-glfw3.lib;opengl32.lib;glew32s.lib
-#+END_SRC
+   #+begin_src bash
+   git clone https://github.com/rafaelpalomar/prog2002_lab01 --recursive
+   #+end_src
 
-Now, you can start building and compiling your main.cpp file.
+   Note the =--recursive= flag that will pull =glfw= as a submodule.
 
-* Instructions for Linux
+3. Create a folder for the project build (e.g., /home/rafael/prog2002_lab01/build)
 
-This instructions should work on recent Debian-based systems, for other
-distributions try to find the appropriated name for the packages in your package
-manager.
-
-1. Install the libraries
-
-#+BEGIN_SRC bash
-apt install libglfw3 libglfw3-dev mesa-common-dev libglew-dev
-#+END_SRC
-
-2. Create and copy your application (=main.cpp=)
-
-#+BEGIN_SRC bash
-g++ main.cpp -o lab01 -lGL -lGLEW -lglfw
-#+END_SRC
-
-* Tasks
-
-** Task 0: Initial setup
-
- - Install your development environment and the required libraries. If there is
-   no special reason to use 32-bits version, we recommend to use 64-bit versions
-   of the libraries.
-
- - Update your graphics drivers.
-
-** Task 1: Create your first window and OpenGL context with GLFW
-
-- Create a simple =main.cpp= that creates a GLFW window.
-- Keep the window alive until the user presses the =escape= key.
-- Make sure to capture and inform the user about any possible error derived from
-  the initialization of GLFW or the creation of the window.
-- Make sure to properly terminate the application when the user closes the
-  application.
-- Make the OpenGL context current.
-
-** Task 2: Initialize GLEW and clear the screen
-
-- Use OpenGL basic functions to set the backround of the window to a color of
-  your choice.
-
-** Task 3: Create your first triangle and display it on the screen.
-
-- Initiailze GLEW and make sure to capture and inform the user about any
-  possible error.
-- Print the OpenGL version.
-- Create a triangle geometry based no the coordinates of its vertices.
-- Transfer triangle definition to OpenGL buffers and display the triangle.
-- Create a simple vertex shader that forwards the vertex coordinates as they
-  are.
-- Create a simple fragment shader that sets the triangle to a color of choice.
-- Try changing the position and color of the triangle using shaders.
+4. Configure the project:
+   #+begin_src
+   cd /home/rafael/prog2002_lab01/build
+   cmake ../
+   make
+   #+end_src
