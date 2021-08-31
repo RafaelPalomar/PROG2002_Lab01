@@ -9,3 +9,4 @@ add_subdirectory(glfw)
 
 add_executable(lab01 main.cpp)
 target_link_libraries(lab01 glfw glad OpenGL::GL ${CMAKE_DL_LIBS})
+target_compile_features(lab01 PRIVATE cxx_std_17)
